@@ -27,14 +27,14 @@ weddingTime: "18:00",        // HH:mm, 24 soatlik
 timeZone: "Asia/Tashkent",   // o‘zgartirmang
 ```
 
-Shu ikki qatordan avtomatik hisoblanadi: hero’dagi qisqa sana, to‘liq oylik kalendar
+Shu ikki qatordan avtomatik hisoblanadi: to‘liq oylik kalendar
 (hafta dushanbadan), hafta kuni, boshlanish vaqti, orqaga sanoq va ulashish tavsifi.
 
 | Holat                        | Saytda nima chiqadi                                                       |
 | ---------------------------- | ------------------------------------------------------------------------- |
-| Sana bo‘sh yoki noto‘g‘ri | “To‘y sanasi tez orada e’lon qilinadi”, kalendar va hisoblagich yo‘q |
-| Sana bor, vaqt yo‘q         | Kalendar va sana chiqadi, hisoblagich yoqilmaydi                          |
-| Sana va vaqt bor             | Hammasi, hisoblagich Toshkent vaqti bo‘yicha                             |
+| Sana bo‘sh yoki noto‘g‘ri | Sana e’lon qilinishi haqida izoh, hisoblagichda chiziqlar |
+| Sana bor, vaqt yo‘q         | Kalendar va sana chiqadi, hisoblagich vaqt tasdiqlanishini kutadi |
+| Sana va vaqt bor             | Sanadan keyin kun, soat va daqiqa bo‘yicha hisoblagich ishlaydi |
 | Sana o‘tib ketgan           | Hisoblagich o‘rniga “Bu quvonchli kun yetib keldi…”                   |
 
 ## 3. To‘yxona, manzil va mo‘ljal
@@ -55,7 +55,9 @@ Hamma maydon bo‘sh bo‘lsa — “Manzil tez orada e’lon qilinadi”.
 **Google Maps:** joyni oching → **Ulashish (Share)** → **Havolani nusxalash** → `googleMapsUrl` ga qo‘ying.
 **Yandex Maps:** joyni oching → **Ulashish (Поделиться)** → **Havolani nusxalash** → `yandexMapsUrl` ga qo‘ying.
 
-Havola bo‘sh yoki noto‘g‘ri bo‘lsa, tegishli tugma umuman chiqmaydi (ishlamaydigan “#” tugma bo‘lmaydi).
+Manzil tagidagi katta **“Xaritaga o‘tish”** tugmasi `yandexMapsUrl` havolasini yangi oynada ochadi.
+Yandex havolasi bo‘sh yoki noto‘g‘ri bo‘lsa, tugma “Joylashuv tez orada qo‘shiladi” izohi bilan nofaol turadi.
+Google havolasi ixtiyoriy: kiritilgandagina qo‘shimcha tugma chiqadi.
 “Manzilni nusxalash” tugmasi manzil kiritilgandagina chiqadi.
 
 ## 5. Musiqa (MP3) faylini joylashtirish
@@ -80,6 +82,8 @@ Qanday ishlaydi:
 ## 6. Rang, rasm va matnlarni almashtirish
 
 - **Ranglar va shriftlar:** `src/styles.css` boshidagi `:root` bo‘limi (`--bordo`, `--gold`, `--ivory` …).
+- **Tun / kunduz rejimi:** boshlang‘ich ko‘rinish — tun rejimi. Yuqoridagi oy/quyosh tugmasi ko‘rinishni almashtiradi.
+  Tanlov brauzerda eslab qolinadi. Tun ranglari `:root[data-theme='dark']` ichida; `ThemeToggle.tsx` boshqaradi.
 - **Taklif matni va barcha yozuvlar:** `src/i18n/uz.ts` (o‘zbekcha), `src/i18n/ru.ts` (ruscha).
 - **Kelin-kuyov rasmi:** `src/img/pair.png`. Asl rasmning qora foni `CoupleHero.tsx` ichidagi
   `pair-cutout` SVG filtri orqali faqat ko‘rsatishda shaffof qilinadi; rasm fayli o‘zgartirilmagan.

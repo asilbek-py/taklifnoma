@@ -49,7 +49,7 @@ export const wedding: WeddingConfig = {
   // ── SANA VA VAQT ────────────────────────────────────────────
   // TO‘Y SANASINI SHU YERGA YOZING. Format: YYYY-MM-DD. Masalan, 2027-05-20 — faqat format namunasi.
   // Bo‘sh yoki noto‘g‘ri bo‘lsa: "To‘y sanasi tez orada e’lon qilinadi" ko‘rsatiladi,
-  // kalendar va orqaga sanoq chiqmaydi.
+  // kalendar o‘rnida izoh, sanoq o‘rnida esa chiziqlar ko‘rsatiladi.
   weddingDate: "",
 
   // TO‘Y BOSHLANISH VAQTINI SHU YERGA YOZING. 24 soatlik format: HH:mm.
@@ -88,7 +88,8 @@ export const wedding: WeddingConfig = {
   googleMapsUrl: "",
 
   // Yandex Maps’da joyni oching → Ulashish → Havolani nusxalash → shu yerga joylashtiring.
-  // Havola bo‘sh yoki noto‘g‘ri bo‘lsa "Yandex xaritada ochish" tugmasi umuman chiqmaydi.
+  // HAVOLANI KEYIN SHU YERGA QO‘YING. Manzil tagidagi katta "Xaritaga o‘tish" tugmasi uni ochadi.
+  // Hozircha bo‘sh bo‘lsa, tugma "Joylashuv tez orada qo‘shiladi" izohi bilan tayyor turadi.
   yandexMapsUrl: "",
 
   // ── MUSIQA ──────────────────────────────────────────────────

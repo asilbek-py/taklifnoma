@@ -20,6 +20,11 @@ export interface Dictionary {
   controls: {
     languageGroup: string;
     switchTo: (languageName: string) => string;
+    themeToggle: string;
+    switchToLight: string;
+    switchToDark: string;
+    dark: string;
+    light: string;
   };
 
   music: {
@@ -67,6 +72,8 @@ export interface Dictionary {
     addressLabel: string;
     landmarkLabel: string;
     openYandex: string;
+    mapProvider: string;
+    mapPending: string;
     openGoogle: string;
     newTab: string;
     copy: string;
@@ -82,6 +89,7 @@ export interface Dictionary {
     seconds: string;
     waiting: string;
     passed: string;
+    pending: string;
   };
 
   footer: {

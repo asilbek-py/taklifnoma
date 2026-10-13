@@ -35,6 +35,11 @@ export const ru: Dictionary = {
   controls: {
     languageGroup: 'Выбор языка',
     switchTo: (languageName) => `Язык: ${languageName}`,
+    themeToggle: 'Ночной режим',
+    switchToLight: 'Включить дневной режим',
+    switchToDark: 'Включить ночной режим',
+    dark: 'Ночь',
+    light: 'День',
   },
 
   music: {
@@ -84,7 +89,9 @@ export const ru: Dictionary = {
     cityLabel: 'Город / район',
     addressLabel: 'Адрес',
     landmarkLabel: 'Ориентир',
-    openYandex: 'Открыть в Яндекс Картах',
+    openYandex: 'Открыть на карте',
+    mapProvider: 'Яндекс Карты',
+    mapPending: 'Местоположение скоро появится',
     openGoogle: 'Открыть в Google Maps',
     newTab: 'откроется в новой вкладке',
     copy: 'Скопировать адрес',
@@ -93,13 +100,14 @@ export const ru: Dictionary = {
   },
 
   countdown: {
-    title: 'Считаем каждое мгновение',
+    title: 'До нашего счастливого дня',
     days: 'Дней',
     hours: 'Часов',
     minutes: 'Минут',
     seconds: 'Секунд',
     waiting: 'Ждём вас с нетерпением.',
     passed: 'Этот радостный день настал. Спасибо за ваши тёплые пожелания!',
+    pending: 'Дата и время свадьбы скоро будут объявлены.',
   },
 
   footer: {

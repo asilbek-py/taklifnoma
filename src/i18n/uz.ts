@@ -32,6 +32,11 @@ export const uz: Dictionary = {
   controls: {
     languageGroup: 'Tilni tanlash',
     switchTo: (languageName) => `Til: ${languageName}`,
+    themeToggle: 'Tun rejimi',
+    switchToLight: 'Kunduzgi rejimga o‘tish',
+    switchToDark: 'Tun rejimiga o‘tish',
+    dark: 'Tun',
+    light: 'Kun',
   },
 
   music: {
@@ -81,7 +86,9 @@ export const uz: Dictionary = {
     cityLabel: 'Shahar / tuman',
     addressLabel: 'Manzil',
     landmarkLabel: 'Mo‘ljal',
-    openYandex: 'Yandex xaritada ochish',
+    openYandex: 'Xaritaga o‘tish',
+    mapProvider: 'Yandex Xaritalar',
+    mapPending: 'Joylashuv tez orada qo‘shiladi',
     openGoogle: 'Google Maps’da ochish',
     newTab: 'yangi oynada ochiladi',
     copy: 'Manzilni nusxalash',
@@ -90,13 +97,14 @@ export const uz: Dictionary = {
   },
 
   countdown: {
-    title: 'Har lahzani sanayapmiz',
+    title: 'Baxtli kunimizgacha',
     days: 'Kun',
     hours: 'Soat',
     minutes: 'Daqiqa',
     seconds: 'Soniya',
     waiting: 'Sizni intiqlik bilan kutamiz.',
     passed: 'Bu quvonchli kun yetib keldi. Duolaringiz uchun rahmat!',
+    pending: 'To‘y sanasi va vaqti tez orada e’lon qilinadi.',
   },
 
   footer: {
