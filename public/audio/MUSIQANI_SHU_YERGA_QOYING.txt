@@ -1,0 +1,8 @@
+Musiqa faylini shu papkaga quyidagi nom bilan joylashtiring:
+
+    wedding-music.mp3
+
+To‘liq yo‘l: public/audio/wedding-music.mp3
+
+Boshqa nom ishlatsangiz, src/config/wedding.ts ichidagi musicSrc qiymatini ham o‘zgartiring.
+Fayl bo‘lmasa ham taklifnoma ochiladi, faqat musiqa tugmasi "Musiqa hozircha mavjud emas" deydi.
