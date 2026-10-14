@@ -83,8 +83,8 @@ Qanday ishlaydi:
 ## 6. Rang, rasm va matnlarni almashtirish
 
 - **Ranglar va shriftlar:** `src/styles.css` boshidagi `:root` bo‘limi (`--bordo`, `--gold`, `--ivory` …).
-- **Tun / kunduz rejimi:** boshlang‘ich ko‘rinish — tun rejimi. Yuqoridagi oy/quyosh tugmasi ko‘rinishni almashtiradi.
-  Tanlov brauzerda eslab qolinadi. Tun ranglari `:root[data-theme='dark']` ichida; `ThemeToggle.tsx` boshqaradi.
+- **Tun / kunduz rejimi:** sayt har ochilganda kunduzgi rejimda chiqadi. Yuqoridagi oy/quyosh tugmasi ko‘rinishni almashtiradi.
+  Sahifa yangilansa yana kunduzgi rejim ochiladi. Tun ranglari `:root[data-theme='dark']` ichida; `ThemeToggle.tsx` boshqaradi.
 - **Taklif matni va barcha yozuvlar:** `src/i18n/uz.ts` (o‘zbekcha), `src/i18n/ru.ts` (ruscha).
 - **Kelin-kuyov rasmi:** `src/img/pair.png`. Asl rasmning qora foni `CoupleHero.tsx` ichidagi
   `pair-cutout` SVG filtri orqali faqat ko‘rsatishda shaffof qilinadi; rasm fayli o‘zgartirilmagan.
@@ -93,6 +93,8 @@ Qanday ishlaydi:
   **Mum muhr va kichik bezaklar:** `src/components/ornaments.tsx` ichidagi SVG.
 - **Animatsiyalar:** konvertning ochilishi `EnvelopeIntro.tsx` da; asosiy sahifa animatsiyalari
   `styles.css` da. `src/lib/useScrollReveal.ts` bo‘limlarni ekranga kirganda bir marta ochadi.
+  `styles.css` boshidagi `--motion-scale: 2` barcha asosiy harakatlar va ularning pauzalarini ikki baravar sekinlashtiradi;
+  konvert 3,2 soniyada ochiladi. `1` qiymati avvalgi tezlikni qaytaradi.
   Qurilmada harakatni kamaytirish yoqilsa, kontent kechikishsiz ko‘rinadi.
 - **Favicon:** `public/favicon.svg`.
 - **Ulashish rasmi (og:image):** hozir yo‘q. Qo‘shish uchun `public/preview.jpg` (1200×630) qo‘yib,

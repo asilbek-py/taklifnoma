@@ -1,6 +1,6 @@
 import { useCallback, useLayoutEffect, useState } from 'react';
 import { EnvelopeIntro } from './components/EnvelopeIntro';
-import { LanguageSwitcher } from './components/LanguageSwitcher';
+// import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { MusicPlayer } from './components/MusicPlayer';
 import { ThemeToggle } from './components/ThemeToggle';
 import { CoupleHero } from './components/CoupleHero';
@@ -49,7 +49,8 @@ export default function App() {
         <MusicPlayer />
         <div className="controls__right">
           <ThemeToggle />
-          <LanguageSwitcher />
+          {/* Til tanlashni qayta yoqish uchun import va shu qatorni kommentdan chiqaring. */}
+          {/* <LanguageSwitcher /> */}
         </div>
       </div>
 

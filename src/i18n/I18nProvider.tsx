@@ -15,12 +15,16 @@ interface I18nValue {
 const I18nContext = createContext<I18nValue | null>(null);
 
 function initialLanguage(): Language {
+  // Til tanlash yashirilganida avval saqlangan ruscha tanlov qo‘llanmaydi.
+  // Tanlovni eslab qolishni qayta yoqish uchun quyidagi blokni kommentdan chiqaring.
+  /*
   try {
     const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === 'uz' || stored === 'ru') return stored;
   } catch {
-    /* localStorage yopiq bo‘lishi mumkin — standart tilga qaytamiz */
+    // localStorage yopiq bo‘lishi mumkin — standart tilga qaytamiz
   }
+  */
   return wedding.defaultLanguage === 'ru' ? 'ru' : 'uz';
 }
 

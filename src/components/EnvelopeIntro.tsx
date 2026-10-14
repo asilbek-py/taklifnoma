@@ -44,14 +44,16 @@ export function EnvelopeIntro({ onOpenStart, onOpened }: Props) {
     music.play();
     setOpening(true);
     onOpenStart();
-    // The transition event is authoritative; the timer covers interrupted transitions.
-    timer.current = window.setTimeout(finishOpening, (reduced ? OPEN_MS_REDUCED : OPEN_MS) + 150);
+    // Keep the fallback in sync with the shared CSS animation speed.
+    const scale = Number.parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--motion-scale'));
+    const duration = reduced ? OPEN_MS_REDUCED : OPEN_MS * (Number.isFinite(scale) && scale > 0 ? scale : 1);
+    timer.current = window.setTimeout(finishOpening, duration + 150);
   };
 
   return (
     <div
       className={`envelope${opening ? ' is-opening' : ''}${reduced ? ' is-reduced' : ''}`}
-      style={{ '--envelope-duration': `${OPEN_MS}ms`, '--envelope-reduced-duration': `${OPEN_MS_REDUCED}ms` } as CSSProperties}
+      style={{ '--envelope-duration': `calc(${OPEN_MS}ms * var(--motion-scale, 1))`, '--envelope-reduced-duration': `${OPEN_MS_REDUCED}ms` } as CSSProperties}
       onTransitionEnd={(event) => {
         if (event.target === event.currentTarget && event.propertyName === 'opacity') finishOpening();
       }}

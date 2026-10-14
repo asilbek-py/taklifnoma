@@ -33,6 +33,7 @@
   --safe-left: env(safe-area-inset-left, 0px);
   --section-pad: clamp(64px, 9vw, 104px);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --motion-scale: 2; /* 1 = original speed; 2 = twice as slow. */
   color-scheme: light;
 }
 
@@ -115,14 +116,14 @@ button { touch-action: manipulation; }
   transition: background 200ms, color 200ms;
 }
 .music__pulse { position: absolute; inset: -1px; border: 1px solid currentColor; border-radius: 50%; opacity: 0; }
-.music__btn.is-playing .music__pulse { animation: musicPulse 2400ms ease-out infinite; }
+.music__btn.is-playing .music__pulse { animation: musicPulse calc(2400ms * var(--motion-scale)) ease-out infinite; }
 .music__bars { display: flex; align-items: center; gap: 3px; height: 18px; }
 .music__bars i { width: 3px; height: 15px; border-radius: 2px; background: currentColor; }
 .music__btn:not(.is-playing) .music__bars { display: none; }
-.music__btn.is-playing .music__bars i { animation: musicBar 900ms ease-in-out infinite alternate; }
-.music__bars i:nth-child(2) { animation-delay: -300ms; }
-.music__bars i:nth-child(3) { animation-delay: -600ms; }
-.music__bars i:nth-child(4) { animation-delay: -150ms; }
+.music__btn.is-playing .music__bars i { animation: musicBar calc(900ms * var(--motion-scale)) ease-in-out infinite alternate; }
+.music__bars i:nth-child(2) { animation-delay: calc(-300ms * var(--motion-scale)); }
+.music__bars i:nth-child(3) { animation-delay: calc(-600ms * var(--motion-scale)); }
+.music__bars i:nth-child(4) { animation-delay: calc(-150ms * var(--motion-scale)); }
 .music__play { width: 18px; height: 18px; margin-left: 2px; }
 .music__hint {
   max-width: min(210px, 50vw); padding: 7px 12px; border-radius: 16px;
@@ -162,7 +163,7 @@ button { touch-action: manipulation; }
 .envelope {
   position: fixed; inset: 0; z-index: 50; overflow: hidden;
   perspective: 1800px; background: var(--bordo-deep);
-  transition: opacity 480ms ease calc(var(--envelope-duration) - 480ms);
+  transition: opacity calc(480ms * var(--motion-scale)) ease calc(var(--envelope-duration) - 480ms * var(--motion-scale));
 }
 .envelope__back {
   position: absolute; inset: 0;
@@ -173,15 +174,15 @@ button { touch-action: manipulation; }
   display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 9vh 20px 20px;
   background: var(--ivory); border: 1px solid var(--gold);
   box-shadow: inset 0 0 0 7px var(--ivory), inset 0 0 0 8px #c6a66777, 0 10px 60px #21061055;
-  transition: transform 800ms var(--ease-out) 480ms;
+  transition: transform calc(800ms * var(--motion-scale)) var(--ease-out) calc(480ms * var(--motion-scale));
 }
 .envelope__letter-names { font: 400 clamp(1.9rem, 5vw, 3.4rem) / 1.3 var(--font-script); color: var(--bordo); text-align: center; }
 .envelope__fold {
   position: absolute; inset: 0; z-index: 2; width: 100%; height: 100%;
   filter: drop-shadow(0 -4px 14px #21061033);
-  transition: transform 850ms var(--ease-out) 300ms;
+  transition: transform calc(850ms * var(--motion-scale)) var(--ease-out) calc(300ms * var(--motion-scale));
 }
-.envelope__fold--bottom { z-index: 3; transition-delay: 460ms; }
+.envelope__fold--bottom { z-index: 3; transition-delay: calc(460ms * var(--motion-scale)); }
 .fold { stroke: #d4b47a; stroke-width: 1.3; stroke-linejoin: round; vector-effect: non-scaling-stroke; }
 .fold--side { fill: #782638; }
 .fold--bottom { fill: #862c40; }
@@ -191,7 +192,7 @@ button { touch-action: manipulation; }
   position: absolute; z-index: 4; inset: 0 0 auto; height: 57%;
   transform-origin: 50% 0; backface-visibility: hidden;
   filter: drop-shadow(0 8px 18px #21061066);
-  transition: transform 950ms cubic-bezier(0.45, 0.05, 0.2, 1) 180ms;
+  transition: transform calc(950ms * var(--motion-scale)) cubic-bezier(0.45, 0.05, 0.2, 1) calc(180ms * var(--motion-scale));
 }
 .envelope__flap svg { width: 100%; height: 100%; }
 :root[data-theme='dark'] .envelope { background: #090c0a; }
@@ -199,14 +200,14 @@ button { touch-action: manipulation; }
 :root[data-theme='dark'] .fold--side { fill: #1a211c; }
 :root[data-theme='dark'] .fold--bottom { fill: #24221c; }
 :root[data-theme='dark'] .fold--flap { fill: #151c17; }
-.envelope__frame { position: absolute; inset: 12px; z-index: 5; border: 1px solid #edd6a075; pointer-events: none; transition: opacity 300ms; }
+.envelope__frame { position: absolute; inset: 12px; z-index: 5; border: 1px solid #edd6a075; pointer-events: none; transition: opacity calc(300ms * var(--motion-scale)); }
 .envelope__frame::after { content: ''; position: absolute; inset: 5px; border: 1px solid #edd6a030; }
 .envelope__content {
   position: absolute; z-index: 6; inset: 0;
   display: flex; flex-direction: column; align-items: center; justify-content: space-between;
   padding: calc(var(--safe-top) + clamp(88px, 12vh, 130px)) 24px calc(var(--safe-bottom) + clamp(52px, 8vh, 88px));
   text-align: center; color: var(--on-bordo); pointer-events: none;
-  transition: opacity 300ms ease, translate 500ms var(--ease-out);
+  transition: opacity calc(300ms * var(--motion-scale)) ease, translate calc(500ms * var(--motion-scale)) var(--ease-out);
 }
 .envelope__invited { display: flex; flex-direction: column; align-items: center; gap: 8px; }
 .envelope__invited-top { max-width: 20ch; font: 500 clamp(1.8rem, 4.7vw, 3.7rem) / 1.1 var(--font-display); letter-spacing: 0.09em; text-transform: uppercase; }
@@ -219,7 +220,7 @@ button { touch-action: manipulation; }
   width: clamp(116px, 17vw, 166px); height: clamp(116px, 17vw, 166px);
   padding: 0; border: 0; border-radius: 50%; background: transparent;
   transform: translate(-50%, -50%); cursor: pointer;
-  filter: drop-shadow(0 8px 15px #21061077); animation: sealBreath 2800ms ease-in-out infinite;
+  filter: drop-shadow(0 8px 15px #21061077); animation: sealBreath calc(2800ms * var(--motion-scale)) ease-in-out infinite;
 }
 .seal__wax { width: 100%; height: 100%; }
 .seal__label { position: absolute; inset: 0; display: grid; place-items: center; font: 700 clamp(0.95rem, 2.2vw, 1.15rem) / 1 var(--font-display); letter-spacing: 0.13em; text-transform: uppercase; color: #4d320f; text-shadow: 0 1px #fff2cb77; }
@@ -227,7 +228,7 @@ button { touch-action: manipulation; }
 @keyframes sealBreath { 0%, 100% { transform: translate(-50%, -50%) scale(1); } 50% { transform: translate(-50%, -50%) scale(1.035); } }
 @keyframes sealOpen { 0% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 25% { transform: translate(-50%, -50%) scale(1.08) rotate(-7deg); opacity: 1; } 100% { transform: translate(-50%, -35%) scale(0.8) rotate(9deg); opacity: 0; } }
 .envelope.is-opening { opacity: 0; pointer-events: none; }
-.envelope.is-opening .seal { animation: sealOpen 400ms ease-out forwards; }
+.envelope.is-opening .seal { animation: sealOpen calc(400ms * var(--motion-scale)) ease-out forwards; }
 .envelope.is-opening .envelope__content { opacity: 0; translate: 0 -14px; }
 .envelope.is-opening .envelope__frame { opacity: 0; }
 .envelope.is-opening .envelope__flap { transform: rotateX(-175deg); }
@@ -271,26 +272,37 @@ button { touch-action: manipulation; }
   min-height: 54px; margin-top: auto; padding: 28px 16px 4px;
   color: var(--accent-gold); font: 600 0.75rem / 1.2 var(--font-ui); letter-spacing: 0.17em; text-transform: uppercase; text-decoration: none;
 }
-.hero__scroll svg { width: 18px; height: 22px; animation: nudge 2200ms ease-in-out 1800ms infinite; }
-.page.is-revealed .hero__band { animation: bandIn 900ms var(--ease-out) both; }
-.page.is-revealed .hero__horn { animation: hornIn 1100ms var(--ease-out) 100ms both; }
-.page.is-revealed .hero__horn--right { animation-delay: 180ms; }
-.page.is-revealed .names__groom { animation: heroIn 900ms var(--ease-out) 200ms both; }
-.page.is-revealed .names__and { animation: heroIn 800ms var(--ease-out) 340ms both; }
-.page.is-revealed .names__bride { animation: heroIn 1000ms var(--ease-out) 420ms both; }
-.page.is-revealed .hero__couple { animation: coupleIn 1200ms var(--ease-out) 600ms both; }
-.page.is-revealed .hero__scroll { animation: heroIn 800ms var(--ease-out) 1100ms both; }
+.hero__scroll svg { width: 18px; height: 22px; animation: nudge calc(2200ms * var(--motion-scale)) ease-in-out calc(1800ms * var(--motion-scale)) infinite; }
+.page.is-revealed .hero__band { animation: bandIn calc(900ms * var(--motion-scale)) var(--ease-out) both; }
+.page.is-revealed .hero__horn { animation: hornIn calc(1100ms * var(--motion-scale)) var(--ease-out) calc(100ms * var(--motion-scale)) both; }
+.page.is-revealed .hero__horn--right { animation-delay: calc(180ms * var(--motion-scale)); }
+.page.is-revealed .names__groom { animation: heroIn calc(900ms * var(--motion-scale)) var(--ease-out) calc(200ms * var(--motion-scale)) both; }
+.page.is-revealed .names__and { animation: heroIn calc(800ms * var(--motion-scale)) var(--ease-out) calc(340ms * var(--motion-scale)) both; }
+.page.is-revealed .names__bride { animation: heroIn calc(1000ms * var(--motion-scale)) var(--ease-out) calc(420ms * var(--motion-scale)) both; }
+.page.is-revealed .hero__couple { animation: coupleIn calc(1200ms * var(--motion-scale)) var(--ease-out) calc(600ms * var(--motion-scale)) both, gentleFloat calc(3400ms * var(--motion-scale)) ease-in-out calc(1800ms * var(--motion-scale)) infinite; }
+.page.is-revealed .hero__scroll { animation: heroIn calc(800ms * var(--motion-scale)) var(--ease-out) calc(1100ms * var(--motion-scale)) both; }
+.page.is-revealed .hero::before, .page.is-revealed .hero::after { animation: softTwinkle calc(2600ms * var(--motion-scale)) ease-in-out calc(1800ms * var(--motion-scale)) infinite; }
+.page.is-revealed .hero::after { animation-delay: calc(2300ms * var(--motion-scale)); }
 @keyframes bandIn { from { opacity: 0; translate: 0 -16px; } to { opacity: 1; translate: 0; } }
 @keyframes hornIn { from { opacity: 0; translate: var(--horn-from) 0; } to { opacity: 1; translate: 0; } }
 @keyframes heroIn { from { opacity: 0; translate: 0 18px; } to { opacity: 1; translate: 0; } }
 @keyframes coupleIn { from { opacity: 0; translate: 0 30px; scale: 0.96; } to { opacity: 1; translate: 0; scale: 1; } }
 @keyframes nudge { 0%, 100% { translate: 0 0; } 50% { translate: 0 5px; } }
+@keyframes gentleFloat { 0%, 100% { translate: 0 0; } 50% { translate: 0 -5px; } }
+@keyframes softTwinkle { 0%, 100% { opacity: 0.35; translate: 0 0; rotate: 0deg; } 50% { opacity: 0.75; translate: 0 -6px; rotate: 12deg; } }
+@keyframes ornamentSway { 0%, 100% { transform: none; } 25% { transform: translateY(-2px) rotate(-3deg); } 50% { transform: translateY(-4px); } 75% { transform: translateY(-2px) rotate(3deg); } }
 
 /* Viewport-triggered sections; stagger is local to each section. */
-.page[data-motion='full'] [data-reveal] { opacity: 0; translate: 0 24px; transition: opacity 800ms ease, translate 1000ms var(--ease-out); }
-.page[data-motion='full'] [data-reveal-item] { opacity: 0; translate: 0 16px; transition: opacity 700ms ease var(--reveal-delay, 0ms), translate 850ms var(--ease-out) var(--reveal-delay, 0ms); }
+.page[data-motion='full'] [data-reveal] { opacity: 0; translate: 0 24px; transition: opacity calc(800ms * var(--motion-scale)) ease, translate calc(1000ms * var(--motion-scale)) var(--ease-out); }
+.page[data-motion='full'] [data-reveal-item] { opacity: 0; translate: 0 16px; transition: opacity calc(700ms * var(--motion-scale)) ease calc(var(--reveal-delay, 0ms) * var(--motion-scale)), translate calc(850ms * var(--motion-scale)) var(--ease-out) calc(var(--reveal-delay, 0ms) * var(--motion-scale)); }
 .page[data-motion='full'] [data-reveal].is-visible,
 .page[data-motion='full'] [data-reveal].is-visible [data-reveal-item] { opacity: 1; translate: 0; }
+.page[data-motion='full'] .is-visible .letter__ornament--top svg,
+.page[data-motion='full'] .is-visible .letter__flower svg,
+.page[data-motion='full'] .is-visible .footer__ornaments svg { animation: ornamentSway calc(2400ms * var(--motion-scale)) ease-in-out calc(400ms * var(--motion-scale)) 2; }
+.page[data-motion='full'] .is-visible .letter__ornament--top svg:last-child,
+.page[data-motion='full'] .is-visible .footer__ornaments svg:nth-child(2) { animation-delay: calc(600ms * var(--motion-scale)); }
+.page[data-motion='full'] .is-visible .footer__ornaments svg:nth-child(3) { animation-delay: calc(800ms * var(--motion-scale)); }
 .section { position: relative; display: flex; flex-direction: column; align-items: center; padding: var(--section-pad) 24px 0; scroll-margin-top: 30px; text-align: center; }
 .section__title { font: 400 clamp(2.5rem, 5vw, 3.7rem) / 1.15 var(--font-script); color: var(--red); text-wrap: balance; }
 .section__divider { width: 170px; height: auto; margin: 16px auto 28px; color: var(--gold); }
@@ -311,7 +323,7 @@ button { touch-action: manipulation; }
 .letter__closing { max-width: 48ch; margin: 0 auto; font-weight: 500; font-style: italic; text-wrap: pretty; }
 .letter__signature { display: flex; flex-direction: column; align-items: center; gap: 10px; margin-top: 28px; font: italic 500 1.1rem / 1.5 var(--font-display); }
 .letter__names { font: 400 clamp(2rem, 5vw, 3.1rem) / 1.3 var(--font-script); color: #fff6d9; text-wrap: balance; }
-.letter__flower { margin: 22px auto 0; }
+.letter__flower { width: 58px; margin: 22px auto 0; }
 .letter__band { position: absolute; inset: auto 0 0; width: 100%; height: 80px; object-fit: cover; object-position: center; }
 
 /* Open paper layout for the date, venue and countdown. */
