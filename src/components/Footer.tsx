@@ -6,7 +6,7 @@ export function Footer() {
   const { t } = useI18n();
   return (
     <footer className="footer" data-reveal>
-      <div className="footer__ornaments" aria-hidden="true">
+      <div className="footer__ornaments" aria-hidden="true" data-reveal-item>
         <UzFlower size={40} />
         <Pomegranate size={48} />
         <UzFlower size={40} />

@@ -8,7 +8,7 @@ export function InvitationLetter() {
   return (
     <section className="section letter-section" id="taklif" aria-labelledby="letter-title" data-reveal>
       <article className="letter">
-        <div className="letter__ornament letter__ornament--top" aria-hidden="true">
+        <div className="letter__ornament letter__ornament--top" aria-hidden="true" data-reveal-item>
           <Pomegranate size={46} />
           <Pomegranate size={46} />
         </div>
@@ -29,7 +29,7 @@ export function InvitationLetter() {
             <span className="nowrap">{wedding.brideName}</span>
           </span>
         </p>
-        <UzFlower className="letter__flower" size={58} />
+        <div className="letter__flower" data-reveal-item><UzFlower size={58} /></div>
         <img className="letter__band" src={borderImage} width="1536" height="1024" alt="" aria-hidden="true" loading="lazy" />
       </article>
     </section>

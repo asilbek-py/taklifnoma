@@ -5,15 +5,12 @@ type Theme = 'light' | 'dark';
 
 export function ThemeToggle() {
   const { t } = useI18n();
-  const [theme, setTheme] = useState<Theme>(() =>
-    document.documentElement.dataset.theme === 'light' ? 'light' : 'dark',
-  );
+  const [theme, setTheme] = useState<Theme>('light');
   const dark = theme === 'dark';
 
   useLayoutEffect(() => {
     document.documentElement.dataset.theme = theme;
     document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0d100f' : '#fffdf5');
-    try { window.localStorage.setItem('taklifnoma-theme', theme); } catch { /* Private browsing can disable storage. */ }
   }, [theme, dark]);
 
   return (
