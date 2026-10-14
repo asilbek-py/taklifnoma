@@ -1,4 +1,3 @@
-import { wedding } from '../config/wedding.ts';
 import { useI18n } from '../i18n/I18nProvider';
 import { Pomegranate, UzFlower } from './ornaments';
 import borderImage from '../img/suzani-border.webp';
@@ -12,10 +11,6 @@ export function Footer() {
         <Pomegranate size={48} />
         <UzFlower size={40} />
       </div>
-      <p className="footer__names" data-reveal-item>
-        <span className="nowrap">{wedding.groomName}</span> <span className="footer__and">{t.and}</span>{' '}
-        <span className="nowrap">{wedding.brideName}</span>
-      </p>
       <p className="footer__thanks" data-reveal-item>{t.footer.thanks}</p>
       <img className="footer__band" src={borderImage} width="1536" height="1024" alt="" aria-hidden="true" loading="lazy" />
     </footer>

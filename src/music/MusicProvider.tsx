@@ -33,7 +33,8 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     if (typeof Audio === 'undefined' || !wedding.musicSrc.trim()) return null;
     const audio = new Audio();
     audio.loop = true;
-    audio.preload = 'metadata';
+    audio.preload = 'auto';
+    audio.muted = false;
     try {
       audio.volume = clampVolume(wedding.musicVolume);
     } catch {
@@ -47,7 +48,7 @@ export function MusicProvider({ children }: { children: ReactNode }) {
     return audio;
   }, []);
 
-  // Sahifa yuklanganda faqat element tayyorlanadi (metadata) — ovozli autoplay yo‘q.
+  // Musiqa oldindan yuklanadi; ijro "Ochish" bosilgan paytda boshlanadi.
   useEffect(() => {
     if (!getAudio()) setStatus('error');
   }, [getAudio]);
@@ -59,6 +60,9 @@ export function MusicProvider({ children }: { children: ReactNode }) {
       setStatus('error');
       return;
     }
+    audio.muted = false;
+    // Chapdagi tugma bilan boshlangan musiqa "Ochish" bosilganda davom etadi.
+    if (!audio.paused && !audio.error) return;
     if (audio.error) {
       // Avvalgi yuklash xatosidan keyin qayta urinish
       setStatus('idle');

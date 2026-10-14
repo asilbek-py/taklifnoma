@@ -67,13 +67,14 @@ Google havolasi ixtiyoriy: kiritilgandagina qo‘shimcha tugma chiqadi.
    (masalan, `public/audio/kuy.mp3` → `musicSrc: "/audio/kuy.mp3"`).
 3. Ovoz balandligi: `musicVolume: 0.35` (0…1). iPhone ovozni faqat telefon tugmalari bilan boshqaradi.
 
-**Muhim:** loyihada musiqa fayli **yo‘q**. Referens saytdagi `uzbek music.mp3` ni
-ishlab chiqish muhitida yuklab bo‘lmadi (tarmoq bloklagan), boshqa musiqa qo‘yilmagan.
-Faylni o‘zingiz qo‘shing va undan foydalanish huquqingiz borligiga ishonch hosil qiling.
+Musiqa fayli `public/audio/wedding-music.mp3` ichida. Sahifa ochilganda oldindan yuklanadi,
+“Ochish” tugmasi bosilishi bilan ijro boshlanadi.
 
 Qanday ishlaydi:
 
 - Musiqa “Ochish” muhriga bosilganda boshlanadi (brauzerlar ovozli autoplay’ni taqiqlaydi).
+- Musiqa tugagach avtomatik boshidan qayta ijro etiladi; mehmon to‘xtatmaguncha takrorlanadi.
+- Chapdagi musiqa tugmasi bilan oldinroq yoqilgan bo‘lsa, “Ochish” bosilganda o‘sha joyidan davom etadi; ikkinchi audio yaratilmaydi.
 - Yuqori chapdagi tugma — play/pause, ijro vaqtida ekvalayzer va puls harakatlanadi.
 - Til almashtirish va scroll musiqani to‘xtatmaydi va boshidan boshlamaydi.
 - Brauzer rad etsa — “Musiqani yoqish uchun bosing”; fayl topilmasa — “Musiqa hozircha mavjud emas”.
