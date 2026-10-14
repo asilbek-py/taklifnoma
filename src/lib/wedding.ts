@@ -109,6 +109,6 @@ export function getVenue(lang: Language): VenueInfo {
     landmark,
     googleUrl: safeUrl(wedding.googleMapsUrl),
     yandexUrl: safeUrl(wedding.yandexMapsUrl),
-    hasAny: Boolean(name || city || address),
+    hasAny: Boolean(name || city || address || landmark),
   };
 }

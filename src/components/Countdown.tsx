@@ -5,7 +5,7 @@ import { schedule } from '../lib/wedding.ts';
 import { GoldDivider } from './ornaments';
 
 /**
- * Orqaga sanoq faqat sana VA vaqt to‘g‘ri kiritilganda ko‘rinadi.
+ * Sana va vaqt tasdiqlanmaguncha raqamlar o‘rniga chiziq ko‘rsatiladi.
  * Hisob config’dagi timeZone (Asia/Tashkent) bo‘yicha — mehmon qurilmasiga bog‘liq emas.
  */
 export function Countdown() {
@@ -20,7 +20,7 @@ export function Countdown() {
       const current = Date.now();
       setNow(current);
       if (current >= target) return; // to‘y vaqti kelgach to‘xtaydi
-      id = window.setTimeout(tick, 1000 - (current % 1000) + 10);
+      id = window.setTimeout(tick, 60_000 - (current % 60_000) + 20);
     };
     tick();
     // Orqa fondan qaytganda darhol yangilash
@@ -37,15 +37,13 @@ export function Countdown() {
     };
   }, [target]);
 
-  if (target === null) return null;
-
-  const passed = now >= target;
-  const parts = splitDuration(target - now);
+  const pending = target === null;
+  const passed = target !== null && now >= target;
+  const parts = splitDuration((target ?? now) - now);
   const units = [
-    { value: String(parts.days), label: t.countdown.days },
-    { value: pad2(parts.hours), label: t.countdown.hours },
-    { value: pad2(parts.minutes), label: t.countdown.minutes },
-    { value: pad2(parts.seconds), label: t.countdown.seconds },
+    { value: pending ? '—' : String(parts.days), label: t.countdown.days },
+    { value: pending ? '—' : pad2(parts.hours), label: t.countdown.hours },
+    { value: pending ? '—' : pad2(parts.minutes), label: t.countdown.minutes },
   ];
 
   return (
@@ -58,7 +56,7 @@ export function Countdown() {
         <p className="countdown__passed" data-reveal-item>{t.countdown.passed}</p>
       ) : (
         <>
-          <div className="countdown" role="timer" aria-live="off">
+          <div className={`countdown${pending ? ' is-pending' : ''}`} role="timer" aria-live="off" aria-label={pending ? t.countdown.pending : t.countdown.title}>
             {units.map((u) => (
               <div className="countdown__unit" key={u.label} data-reveal-item>
                 <span className="countdown__value">{u.value}</span>
@@ -66,7 +64,7 @@ export function Countdown() {
               </div>
             ))}
           </div>
-          <p className="countdown__waiting" data-reveal-item>{t.countdown.waiting}</p>
+          <p className="countdown__waiting" data-reveal-item>{pending ? t.countdown.pending : t.countdown.waiting}</p>
         </>
       )}
     </section>

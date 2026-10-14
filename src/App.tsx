@@ -2,6 +2,7 @@ import { useCallback, useLayoutEffect, useState } from 'react';
 import { EnvelopeIntro } from './components/EnvelopeIntro';
 import { LanguageSwitcher } from './components/LanguageSwitcher';
 import { MusicPlayer } from './components/MusicPlayer';
+import { ThemeToggle } from './components/ThemeToggle';
 import { CoupleHero } from './components/CoupleHero';
 import { InvitationLetter } from './components/InvitationLetter';
 import { WeddingCalendar } from './components/WeddingCalendar';
@@ -46,7 +47,10 @@ export default function App() {
     <>
       <div className={`controls${isOpen ? ' controls--open' : ''}`}>
         <MusicPlayer />
-        <LanguageSwitcher />
+        <div className="controls__right">
+          <ThemeToggle />
+          <LanguageSwitcher />
+        </div>
       </div>
 
       {!isOpen && <EnvelopeIntro onOpenStart={handleOpenStart} onOpened={handleOpened} />}
@@ -62,8 +66,8 @@ export default function App() {
             <img className="details__sprig details__sprig--flower" src={flowerImage} width="650" height="433" alt="" loading="lazy" />
           </div>
           <WeddingCalendar />
-          <VenueSection />
           <Countdown />
+          <VenueSection />
         </div>
         <Footer />
       </main>
