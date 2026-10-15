@@ -97,17 +97,17 @@ Qanday ishlaydi:
   konvert 3,2 soniyada ochiladi. `1` qiymati avvalgi tezlikni qaytaradi.
   Qurilmada harakatni kamaytirish yoqilsa, kontent kechikishsiz ko‘rinadi.
 - **Favicon:** `public/favicon.svg`.
-- **Ulashish rasmi (og:image):** hozir yo‘q. Qo‘shish uchun `public/preview.jpg` (1200×630) qo‘yib,
-  `index.html` ga `<meta property="og:image" content="https://SIZNING-DOMEN/preview.jpg" />` qo‘shing.
+- **Ulashish rasmi:** `public/preview.png` (1200×630). Ismlarni o‘zgartirsangiz rasmni ham yangilang.
+  `src/config/wedding.ts` dagi `siteUrl` asosiy production domenini belgilaydi; Open Graph va Twitter rasm URL’lari build paytida yoziladi.
 
 ## 7. Lokal ishga tushirish va production build
 
-Kerak: [Node.js](https://nodejs.org) 20 yoki yangiroq.
+Kerak: [Node.js](https://nodejs.org) 24.19.0 (`.nvmrc`). `nvm use` bilan tanlang.
 
 ```bash
-npm install        # bir marta
+npm ci             # lockfile bo‘yicha aniq versiyalar
 npm run dev        # http://localhost:5173 — o‘zgarishlar darhol ko‘rinadi
-npm test           # sana/kalendar mantiqini tekshirish
+npm test           # sana/kalendar va audio regression tekshiruvlari
 npm run build      # production build → dist/ papka
 npm run preview    # build natijasini lokal ko‘rish
 ```
@@ -156,3 +156,13 @@ public/audio/              ← wedding-music.mp3 shu yerga
 **Great Vibes** (ismlar), **Cormorant Garamond** (sarlavhalar), **Lora** (matn) —
 o‘zbekcha O‘, G‘ va kirill harflarini qo‘llab-quvvatlaydi. Fayllar `public/fonts/` ichida
 mahalliy saqlanadi; sahifa ochilishida Google Fonts serveriga murojaat qilinmaydi.
+
+## 9. Netlify va release tekshiruvi
+
+`netlify.toml` build uchun `npm run build`, publish uchun `dist` va Node 24.19.0 ni belgilaydi.
+Netlify panelida production branch **main** ekanini tekshiring. Deploy Preview production deploy o‘rnini bosmaydi.
+GitHub Actions har PR va `main` pushida `npm ci`, `npm test`, `npm run build` bajaradi.
+Branch protection’da **Release checks / check** muvaffaqiyatini merge sharti sifatida qo‘ying.
+
+Release oldidan va keyin bajariladigan ro‘yxat: [RELEASE_CHECKLIST.md](RELEASE_CHECKLIST.md).
+Audio testlari soxta audio elementi bilan brauzer hodisalarini tekshiradi; haqiqiy iPhone/Android ijrosi alohida tekshiriladi.

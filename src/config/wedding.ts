@@ -18,6 +18,7 @@
 export type Language = 'uz' | 'ru';
 
 export interface WeddingConfig {
+  siteUrl: string;
   groomName: string;
   brideName: string;
   weddingDate: string;
@@ -39,6 +40,8 @@ export interface WeddingConfig {
 }
 
 export const wedding: WeddingConfig = {
+  // Asosiy production URL. Domen o‘zgarsa yangilang va qayta build qiling.
+  siteUrl: "https://etaklifnomam.netlify.app",
   // ── ISMLAR ──────────────────────────────────────────────────
   // KUYOV ISMI. Konvert, asosiy sahifa, yakun, sarlavha va ulashishda shu yozuv chiqadi.
   groomName: "Asilbek",
@@ -103,7 +106,7 @@ export const wedding: WeddingConfig = {
 
   // ── TIL ─────────────────────────────────────────────────────
   // SAYT OCHILGANDAGI TIL: "uz" (o‘zbekcha) yoki "ru" (ruscha).
-  // Mehmon tilni almashtirsa, uning tanlovi o‘sha brauzerda eslab qolinadi.
+  // Til tanlash hozir yashirilgan; avvalgi saqlangan tanlov o‘qilmaydi.
   defaultLanguage: "uz",
 };
 

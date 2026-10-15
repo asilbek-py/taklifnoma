@@ -8,18 +8,17 @@ export function MusicPlayer() {
   const { status, attempted, toggle } = useMusic();
   const playing = status === 'playing';
   const [showError, setShowError] = useState(false);
-  const [interacted, setInteracted] = useState(false);
 
   // Xato xabari faqat foydalanuvchi ijro qilishga uringach va qisqa muddat ko‘rinadi
   useEffect(() => {
-    if (status === 'error' && attempted && interacted) {
+    if (status === 'error' && attempted) {
       setShowError(true);
       const id = window.setTimeout(() => setShowError(false), 4500);
       return () => window.clearTimeout(id);
     }
     setShowError(false);
     return undefined;
-  }, [status, attempted, interacted]);
+  }, [status, attempted]);
 
   const hint = status === 'blocked' ? t.music.tapToPlay : showError ? t.music.unavailable : '';
 
@@ -28,10 +27,7 @@ export function MusicPlayer() {
       <button
         type="button"
         className={`music__btn${playing ? ' is-playing' : ''}${status === 'error' ? ' is-error' : ''}`}
-        onClick={() => {
-          setInteracted(true);
-          toggle();
-        }}
+        onClick={toggle}
         aria-pressed={playing}
         aria-label={playing ? t.music.pause : t.music.play}
         title={playing ? t.music.pause : t.music.play}

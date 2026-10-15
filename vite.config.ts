@@ -15,13 +15,17 @@ function weddingMeta(): Plugin {
   return {
     name: 'wedding-meta',
     transformIndexHtml(html) {
+      const siteUrl = new URL(wedding.siteUrl);
+      if (siteUrl.protocol !== 'https:') throw new Error('wedding.siteUrl must use HTTPS');
       const t = dictionaries[wedding.defaultLanguage] ?? dictionaries.uz;
       return html
         .replace(/__HTML_LANG__/g, t.htmlLang)
         .replace(/__TITLE__/g, escapeHtml(pageTitle(t)))
         .replace(/__DESCRIPTION__/g, escapeHtml(pageDescription(t)))
         .replace(/__SITE_NAME__/g, escapeHtml(t.meta.siteName))
-        .replace(/__OG_LOCALE__/g, t.ogLocale);
+        .replace(/__OG_LOCALE__/g, t.ogLocale)
+        .replace(/__SITE_URL__/g, escapeHtml(siteUrl.href))
+        .replace(/__OG_IMAGE_URL__/g, escapeHtml(new URL('/preview.png', siteUrl).href));
     },
   };
 }
