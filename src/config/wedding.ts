@@ -50,11 +50,11 @@ export const wedding: WeddingConfig = {
   // TO‘Y SANASINI SHU YERGA YOZING. Format: YYYY-MM-DD. Masalan, 2027-05-20 — faqat format namunasi.
   // Bo‘sh yoki noto‘g‘ri bo‘lsa: "To‘y sanasi tez orada e’lon qilinadi" ko‘rsatiladi,
   // kalendar o‘rnida izoh, sanoq o‘rnida esa chiziqlar ko‘rsatiladi.
-  weddingDate: "",
+  weddingDate: "2026-12-12",
 
   // TO‘Y BOSHLANISH VAQTINI SHU YERGA YOZING. 24 soatlik format: HH:mm.
   // Masalan: "18:00". Vaqt bo‘sh bo‘lsa sana ko‘rinadi, lekin orqaga sanoq yoqilmaydi.
-  weddingTime: "",
+  weddingTime: "15:00",
 
   // VAQT MINTAQASI. O‘zbekiston uchun o‘zgartirmang: "Asia/Tashkent" (UTC+5).
   // Orqaga sanoq mehmon qaysi davlatda bo‘lishidan qat’i nazar shu mintaqa bo‘yicha hisoblanadi.
@@ -62,18 +62,18 @@ export const wedding: WeddingConfig = {
 
   // ── TO‘YXONA VA MANZIL (o‘zbekcha / asosiy) ────────────────
   // TO‘YXONA YOKI RESTORAN NOMINI SHU YERGA YOZING.
-  venueName: "",
+  venueName: "Shoxsaroy Restoran",
 
   // SHAHAR/TUMAN NOMINI SHU YERGA YOZING.
-  city: "",
+  city: "Qo'rg'ontepa tumani",
 
   // TO‘LIQ MANZILNI SHU YERGA YOZING.
-  address: "",
+  address: "Andijon viloyati, Qo‘rg‘ontepa tumani",
 
   // MO‘LJALNI SHU YERGA YOZING. Kerak bo‘lmasa bo‘sh qoldiring.
-  landmark: "",
+  landmark: "Istirohat bog‘i ro‘parasida",
 
-  // ── RUSCHA VARIANTLAR (IXTIYORIY) ───────────────────────────
+  // ── RUSCHA VARIANTLAR (IXTIYORIY) ──────────────────────────
   // Sayt rus tiliga o‘tkazilganda shu qiymatlar ko‘rsatiladi.
   // Bo‘sh qoldirsangiz, rus tilida ham yuqoridagi asosiy (o‘zbekcha) yozuv chiqadi.
   // Masalan, to‘yxona nomini kirill yozuvida berish uchun ishlating.
@@ -85,12 +85,12 @@ export const wedding: WeddingConfig = {
   // ── XARITA HAVOLALARI ───────────────────────────────────────
   // Google Maps’da joyni oching → Ulashish → Havolani nusxalash → shu yerga joylashtiring.
   // Havola bo‘sh yoki noto‘g‘ri bo‘lsa "Google Maps’da ochish" tugmasi umuman chiqmaydi.
-  googleMapsUrl: "",
+  googleMapsUrl: "https://maps.app.goo.gl/8pVcUR6TpFaKHL3q9",
 
   // Yandex Maps’da joyni oching → Ulashish → Havolani nusxalash → shu yerga joylashtiring.
   // HAVOLANI KEYIN SHU YERGA QO‘YING. Manzil tagidagi katta "Xaritaga o‘tish" tugmasi uni ochadi.
   // Hozircha bo‘sh bo‘lsa, tugma "Joylashuv tez orada qo‘shiladi" izohi bilan tayyor turadi.
-  yandexMapsUrl: "",
+  yandexMapsUrl: "https://yandex.uz/maps/-/CXbTUHMi",
 
   // ── MUSIQA ──────────────────────────────────────────────────
   // MP3 faylni public/audio/wedding-music.mp3 ichiga joylashtiring. Nomini o‘zgartirsangiz, bu yo‘lni ham yangilang.
